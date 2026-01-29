@@ -28,3 +28,8 @@
     .tab-button.active {
         border-bottom-color: #8b5cf6;
     }
+
+    /* Mejorar el scrolling suave */
+html {
+    scroll-behavior: smooth;
+}

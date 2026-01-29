@@ -4,30 +4,91 @@ import TabsIllustraciones from "./tabsIllustraciones.astro";
 import ImageGalleryKawaii from "./kawaii/imageGalleryKawaii.astro";
 import ImageGalleryFanArts from "./kawaii/imageGalleryFanArts.astro";
 import ImageGalleryAll from "./kawaii/imageGalleryAll.astro";
+import ImageGalleryChibi from "./kawaii/imageGalleryChibi.astro";
+import ImageGalleryCrochet from "./kawaii/imageGalleryCrochet.astro";
+import TabsGallery from '../components/TabsGallery.astro';
 ---
 
 <div class="mx-auto max-w-9xl px-4 py-8 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-lg text-center">
-    <h2 class="font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent text-5xl/tight sm:text-6xl">ILUSTRACIONES</h2>
+    <h2 class="font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent text-5xl/tight sm:text-6xl">
+      ILUSTRACIONES
+    </h2>
 
     <p class="mt-4 text-lg text-pretty text-gray-700">
-        Ilustraciones para redes sociales, blogs, etc.
-        <br />
-        Hechos con amor y pasión.
+      Ilustraciones para redes sociales, blogs, etc.
+      <br />
+      Hechos con amor y pasión.
     </p>
   </div>
+</div>
 
-  <div class="flex flex-wrap items-center justify-center mt-10 mx-auto gap-4 w-full md:w-11/12 lg:w-3/4">
-    <TabsIllustraciones>
+<div class="mx-auto max-w-9xl px-4 py-8 sm:px-6 lg:px-8">
+  <!-- Layout de dos columnas -->
+  <div class="flex flex-col lg:flex-row gap-6 w-full">
+    
+    <!-- Columna Izquierda: TabsGallery (25%) -->
+    <div class="w-full lg:w-1/4 lg:min-w-[280px]">
+      <div class="lg:sticky lg:top-4 lg:h-screen">
+        <TabsGallery 
+          tabs={[
+            {
+              id: 'all',
+              label: 'Todas las ilustraciones',
+              image: 'https://images.unsplash.com/photo-1719368472026-dc26f70a9b76?q=80&h=800&w=800&auto=format&fit=crop',
+              description: 'Explora nuestra colección completa de obras artísticas'
+            },
+            {
+              id: 'cartoon',
+              label: 'Cartoon',
+              image: 'https://images.unsplash.com/photo-1649265825072-f7dd6942baed?q=80&h=800&w=800&auto=format&fit=crop',
+              description: 'Ilustraciones vibrantes y expresivas en estilo cartoon'
+            },
+            {
+              id: 'semirealismo',
+              label: 'Semi-Realismo',
+              image: 'https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&h=800&w=800&auto=format&fit=crop',
+              description: 'El equilibrio perfecto entre realidad y creatividad'
+            },
+            {
+              id: 'chibi',
+              label: 'Chibi',
+              image: 'https://images.unsplash.com/photo-1729086046027-09979ade13fd?q=80&h=800&w=800&auto=format&fit=crop',
+              description: 'Personajes adorables en estilo japonés kawaii'
+            },
+            {
+              id: 'crochet',
+              label: 'Crochet',
+              image: 'https://images.unsplash.com/photo-1601568494843-772eb04aca5d?q=80&h=800&w=800&auto=format&fit=crop',
+              description: 'Patrones y diseños artesanales en crochet'
+            }
+          ]}
+        />
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Contenido de Galerías (75%) -->
+    <div class="w-full lg:w-3/4 flex-1">
       <div class="tab-content active" data-tab="all">
         <ImageGalleryAll />
       </div>
-      <div class="tab-content" data-tab="kawaii">
+      
+      <div class="tab-content" data-tab="cartoon">
         <ImageGalleryKawaii />
       </div>
-      <div class="tab-content" data-tab="fanarts">
+      
+      <div class="tab-content" data-tab="semirealismo">
         <ImageGalleryFanArts />
       </div>
-    </TabsIllustraciones>
+      
+      <div class="tab-content" data-tab="chibi">
+        <ImageGalleryChibi />
+      </div>
+      
+      <div class="tab-content" data-tab="crochet">
+        <ImageGalleryCrochet />
+      </div>
+    </div>
+
   </div>
 </div>

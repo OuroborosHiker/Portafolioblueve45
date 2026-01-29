@@ -1,0 +1,61 @@
+---
+import "../styles/base.css"
+import "../assets/images/css/galleryTabs.css"
+
+interface Props {
+    tabs: Array<{
+        id: string;
+        label: string;
+        image: string;
+        description?: string;
+    }>;
+}
+
+const { tabs } = Astro.props;
+---
+
+<div class="tabs-gallery-wrapper">
+    <!-- Galería Vertical Expandible -->
+    <div class="vertical-gallery">
+        {tabs.map((tab, index) => (
+            <div 
+                class={`gallery-item ${index === 0 ? 'active' : ''}`}
+                data-tab={tab.id}
+                style={`background-image: url('${tab.image}');`}
+            >
+                <div class="gallery-overlay"></div>
+                <div class="gallery-content">
+                    <h3 class="gallery-title">{tab.label}</h3>
+                    {tab.description && (
+                        <p class="gallery-description">{tab.description}</p>
+                    )}
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
+<script>
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const targetTab = item.dataset.tab;
+            
+            // Remover clase active de todos los items
+            galleryItems.forEach(el => el.classList.remove('active'));
+            
+            // Agregar clase active al item clickeado
+            item.classList.add('active');
+            
+            // Manejar contenido de tabs
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            const targetContent = document.querySelector(`.tab-content[data-tab="${targetTab}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+</script>
