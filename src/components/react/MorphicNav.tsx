@@ -10,6 +10,9 @@ const navItems = {
   "#portfolio": {
     name: "Portafolio",
   },
+  "#comisiones": {
+    name: "Comisiones",
+  },
   "#contact": {
     name: "Contacto",
   },

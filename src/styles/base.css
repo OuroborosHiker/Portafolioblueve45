@@ -49,3 +49,7 @@ html {
   .animate-gradient-shift {
     animation: gradient-shift 6s infinite alternate;
   }
+
+* {
+  cursor: url('../assets/images/cursorZombie.png'), auto !important;
+}
