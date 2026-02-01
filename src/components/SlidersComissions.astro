@@ -1,6 +1,6 @@
 ---
 import "../styles/base.css"
-
+import ModalComission from "./modal/modalComission.astro";
 // Importar imágenes específicas
 import subitem1 from '../assets/images/css/slider1/subitem1.jpg';
 import subitem2 from '../assets/images/css/slider1/subitem2.jpg';
@@ -11,32 +11,43 @@ import subitemSR3 from '../assets/images/css/slider2/subitemSR3.jpg';
 import subitemKW1 from '../assets/images/css/slider3/subitemKW1.jpg';
 import subitemKW2 from '../assets/images/css/slider3/subitemKW2.jpg';
 import subitemKW3 from '../assets/images/css/slider3/subitemKW3.jpg';
+import background1 from '../assets/images/background-slide-1.jpg';
+import background2 from '../assets/images/background-slide-2.jpg';
+import background3 from '../assets/images/background-slide-3.jpg';
+
 
 // Configurar slides con rutas procesadas
 const slidesData = [                
     {
-        imgSrc: 'https://png.pngtree.com/background/20211215/original/pngtree-pink-and-white-cartoon-rose-color-lead-flower-background-picture-image_1451398.jpg',
+        modalKey: 'cartoon',
+        imgSrc: background1.src,
         imgAlt: '...',  
-        title: '¡Cartoon!',
-        description: 'Descubre mi colección de ilustraciones cartoon, perfectas para añadir un toque especial.',    
+        title: '¡Estilo Cartoon!',
+        description: 'Descubre mi colección de ilustraciones cartoon, perfectas para añadir un toque especial.',
+        modal:[
+            {
+            title: 'Solicita tu comisión estilo Cartoon',
+            description: 'Descubre mi colección de ilustraciones cartoon, perfectas para añadir un toque especial.'
+            }
+        ],  
         cards: [
             {
                title: 'Cartoon',
-               effect: 'animate-fade-in-right animate-delay-200',
+               effect: 'animate-fade-in-right animate-delay-200 hover:scale-105',
                image: subitem1.src, // Usar .src para obtener la URL optimizada
                imageAlt: 'imageAlt1',
-               link: '#',
+               link: '',
             },
             {
                title: 'Cartoon',
-               effect: 'animate-slide-up-fade animate-delay-700',
+               effect: 'animate-slide-up-fade relative top-10 animate-delay-700 hover:scale-105',
                image: subitem2.src,
                imageAlt: 'imageAlt2',
                link: '#'
             },
             {
                title: 'Cartoon',
-               effect: 'animate-fade-in-left animate-delay-1200',
+               effect: 'animate-fade-in-left animate-delay-1200 hover:scale-105',
                image: subitem3.src,
                imageAlt: 'imageAlt3',
                link: '#'
@@ -44,28 +55,35 @@ const slidesData = [
         ],          
     },
     {
-        imgSrc: 'https://c4.wallpaperflare.com/wallpaper/353/184/50/anime-landscape-buildings-road-architecture-wallpaper-preview.jpg',
+        modalKey: 'semirealista',
+        imgSrc: background2.src,
         imgAlt: '...',  
-        title: '¡Semirealismo!',
+        title: '¡Estilo Semirealista!',
         description: 'Descubre mi colección de ilustraciones semirealistas, para retratos, personajes y más.',    
+        modal:[
+            {
+            title: 'Solicita tu comisión estilo Semirealista',
+            description: 'Descubre mi colección de ilustraciones semirealistas, para retratos, personajes y más.'
+            }
+        ],  
         cards: [
             {
                title: 'Semirealismo',
-               effect: 'animate-fade-in-right animate-delay-200',
+               effect: 'animate-fade-in-right animate-delay-200 hover:scale-105',
                image: subitemSR1.src, // Usar .src para obtener la URL optimizada
                imageAlt: 'imageAlt1',
                link: '#',
             },
             {
                title: 'Semirealismo',
-               effect: 'animate-slide-up-fade animate-delay-700',
+               effect: 'animate-slide-up-fade relative top-10 animate-delay-700 hover:scale-105',
                image: subitemSR2.src,
                imageAlt: 'imageAlt2',
                link: '#'
             },
             {
                title: 'Semirealismo',
-               effect: 'animate-fade-in-left animate-delay-1200',
+               effect: 'animate-fade-in-left animate-delay-1200 hover:scale-105',
                image: subitemSR3.src,
                imageAlt: 'imageAlt3',
                link: '#'
@@ -73,28 +91,35 @@ const slidesData = [
         ],          
     },
     {
-        imgSrc: 'https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTA3L3NyLWltYWdlLTA0MDYyNS1nbG0xOC1zLTE5OC5qcGc.jpg',
+        modalKey: 'chibi',
+        imgSrc: background3.src,
         imgAlt: '...',  
-        title: '¡Ilustraciones chibi!',
+        title: '¡Estilo Chibi!',
         description: 'Descubre mi colección de ilustraciones chibi, lo tierno jamás pasa de moda.',    
+        modal:[
+            {
+            title: 'Solicita tu comisión estilo Chibi',
+            description: 'Descubre mi colección de ilustraciones chibi, lo tierno jamás pasa de moda.'
+            }
+        ],  
         cards: [
             {
                title: 'Ilustraciones chibi',
-               effect: 'animate-fade-in-right animate-delay-200',
+               effect: 'animate-fade-in-right animate-delay-200 hover:scale-105',
                image: subitemKW1.src, // Usar .src para obtener la URL optimizada
                imageAlt: 'imageAlt1',
                link: '#',
             },
             {
                title: 'Ilustraciones chibi',
-               effect: 'animate-slide-up-fade animate-delay-700',
+               effect: 'animate-slide-up-fade relative top-10 animate-delay-700 hover:scale-105',
                image: subitemKW2.src,
                imageAlt: 'imageAlt2',
                link: '#'
             },
             {
                title: 'Ilustraciones chibi',
-               effect: 'animate-fade-in-left animate-delay-1200',
+               effect: 'animate-fade-in-left animate-delay-1200 hover:scale-105',
                image: subitemKW3.src,
                imageAlt: 'imageAlt3',
                link: '#'
@@ -104,24 +129,47 @@ const slidesData = [
 ];
 ---
 
-<div x-data={`{            
-    slides: ${JSON.stringify(slidesData)},            
+<div
+  x-data={`{
+    slides: ${JSON.stringify(slidesData)},
     currentSlideIndex: 1,
-    previous() {                
-        if (this.currentSlideIndex > 1) {                    
-            this.currentSlideIndex = this.currentSlideIndex - 1                
-        } else {   
-            this.currentSlideIndex = this.slides.length                
-        }            
-    },            
-    next() {                
-        if (this.currentSlideIndex < this.slides.length) {                    
-            this.currentSlideIndex = this.currentSlideIndex + 1                
-        } else {                 
-            this.currentSlideIndex = 1                
-        }            
-    },        
-}`} class="relative w-full overflow-hidden">
+
+    // Estado del modal
+    modalIsOpen: false,
+    modalTitle: '',
+    modalText: '',
+    modalKey: null,
+
+    previous() {
+      if (this.currentSlideIndex > 1) {
+        this.currentSlideIndex = this.currentSlideIndex - 1;
+      } else {
+        this.currentSlideIndex = this.slides.length;
+      }
+    },
+
+    next() {
+      if (this.currentSlideIndex < this.slides.length) {
+        this.currentSlideIndex = this.currentSlideIndex + 1;
+      } else {
+        this.currentSlideIndex = 1;
+      }
+    },
+
+    openModalFromEl(el, key) {
+      this.modalTitle = el.dataset.modalTitle;
+      this.modalText  = el.dataset.modalText;
+      this.modalKey   = key;
+      this.modalIsOpen = true;
+    },
+
+    closeModal() {
+      this.modalIsOpen = false;
+      this.modalKey    = null;
+    }
+  }`}
+  class="relative w-full overflow-hidden"
+>
 
 <!-- previous button -->
     <button type="button" class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white" aria-label="previous slide" x-on:click="previous()">
@@ -138,34 +186,37 @@ const slidesData = [
     </button>
    
     <!-- slides -->
-    <div class="relative min-h-[80svh] w-full">        
-        <template x-for="(slide, index) in slides">
-            <div x-cloak x-show="currentSlideIndex == index + 1" class="absolute inset-0" x-transition.opacity.duration.1000ms>
+    <div class="relative min-h-[80svh] w-full rounded-3xl">        
+        <template x-for="(slide, sIndex) in slides" :key="sIndex">
+            <div x-cloak x-show="currentSlideIndex === sIndex + 1" class="absolute inset-0 rounded-3xl" x-transition.opacity.duration.1000ms>
                 
                 <!-- Background image -->
-                <img class="absolute w-full h-full inset-0 object-cover text-neutral-600 dark:text-neutral-300" x-bind:src="slide.imgSrc" x-bind:alt="slide.imgAlt" />
+                <img class="absolute w-full h-full inset-0 object-cover text-neutral-600 dark:text-neutral-300 rounded-3xl" x-bind:src="slide.imgSrc" x-bind:alt="slide.imgAlt" />
                 
                 <!-- Overlay with content -->
-                <div class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-8 bg-[#ffffff90] px-6 lg:px-32 py-12 lg:py-14">
+                <div class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-8 bg-[#ffffffd9] px-6 lg:px-32 py-12 lg:py-14 rounded-3xl">
                     
                     <!-- Title and description -->
-                    <div class="text-center">
+                    <div class="text-center animate-fade-in-down animate-delay-200">
                         <h3 class="block text-5xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent bg-[length:300%_auto] animate-gradient-shift" x-text="slide.title"></h3>
                         <p class="font-bold mt-4 text-lg text-pretty text-gray-700 mb-5 text-black" x-text="slide.description"></p>
                     </div>
 
                     <!-- Cards grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
-                        <template x-for="card in slide.cards">
-                            <a x-bind:class="card.effect" x-bind:href="card.link" class="flex flex-col bg-[#ffffff00] p-6 border-none border-gray-200 rounded-lg transition-shadow">
+                        <template x-for="(card, cIndex) in slide.cards" :key="cIndex">
+                            <button x-on:click="openModalFromEl($el, slide.modalKey)"
+                                :data-modal-title="slide.title + ' - ' + card.title"
+                                :data-modal-text="card.modalText ?? slide.description" x-bind:class="card.effect" x-bind:href="card.link" class="flex flex-col bg-[#ffffff00] p-6 border-none border-gray-200 rounded-lg transition-shadow">
                                 <img class="object-cover w-full rounded-lg h-90 mb-4" x-bind:src="card.image" x-bind:alt="card.title">
                                 <div class="flex flex-col justify-between flex-grow">
-                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900" x-text="card.title"></h5>
-                                    <p class="mb-4 text-gray-700 text-sm" x-text="card.description"></p>
+                                    <!--<h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900" x-text="card.title"></h5>-->
+                                    <!-- <p class="mb-4 text-gray-700 text-sm" x-text="card.description"></p> -->
                                     
                                 </div>
-                            </a>
+                            </button>
                         </template>
+                        <ModalComission />
                     </div>
                 </div>
             </div>
