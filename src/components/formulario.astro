@@ -1,0 +1,71 @@
+<section class="flex items-center justify-center py-12 px-4 w-full">
+    <div class="grid md:grid-cols-2 md:gap-10 lg:gap-20 max-w-7xl w-full items-center">
+        <div class="p-5">
+            <h1 class="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-3 tracking-tight text-center md:text-start">
+                Contáctame
+            </h1>
+            <p class="text-lg text-gray-600 text-center md:text-start mx-auto md:mx-0 mb-8 leading-relaxed max-w-[400px]">
+                ¿Tienes alguna pregunta o idea? Estaré encantada de ayudarte.
+            </p>
+
+            <form class="space-y-5">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
+                        <input type="text" placeholder="David" 
+                            class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-pink-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Apellido</label>
+                        <input type="text" placeholder="Andrew" 
+                            class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-purple-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg" />  
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico</label>
+                    <input type="email" placeholder="david@company.com" 
+                        class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-blue-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"/>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Número de teléfono</label>
+                    <div class="flex bg-white/60 backdrop-blur-sm border-2 border-pink-200 rounded-2xl overflow-hidden focus-within:border-purple-400 focus-within:bg-white/80 transition-all shadow-lg">
+                        <select class="px-4 py-3 text-sm outline-none cursor-pointer text-gray-700 bg-transparent border-r-2 border-pink-200 font-medium">
+                            <option>US</option>
+                            <option>UK</option>
+                            <option>IN</option>
+                            <option>CO</option>
+                        </select>
+                        <input type="tel" placeholder="+1 342 123-456" 
+                            class="flex-1 px-4 py-3 text-sm outline-none bg-transparent text-gray-700 placeholder-gray-400" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                    <textarea rows="4" 
+                        class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-purple-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none resize-y focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"></textarea>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" 
+                        class="w-5 h-5 cursor-pointer accent-pink-500 rounded-lg border-2 border-pink-200" />
+                    <label class="text-sm text-gray-600 cursor-pointer">
+                        You agree to our <span class="text-purple-600 underline decoration-pink-400">terms</span> and <span class="text-purple-600 underline decoration-pink-400">privacy policy</span>.
+                    </label>
+                </div>
+
+                <button type="submit" 
+                    class="w-full py-4 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-[length:200%_auto] hover:bg-[position:100%_center] text-white font-bold rounded-2xl text-base cursor-pointer transition-all duration-500 shadow-lg hover:shadow-purple-300/50 hover:-translate-y-0.5">
+                    Enviar mensaje ✨
+                </button>
+            </form>
+        </div>
+
+        <div class="rounded-3xl p-10 relative min-h-[662px] w-full max-w-[520px] hidden md:flex flex-col justify-between overflow-hidden bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 border-2 border-pink-200 shadow-2xl">
+            <div class="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+            <img src="https://assets.prebuiltui.com/images/components/form/form-rightside-image.png" alt="3D shapes" class="absolute inset-0 w-full h-full object-cover opacity-80" />
+        </div>
+    </div>
+</section>

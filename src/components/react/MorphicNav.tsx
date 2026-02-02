@@ -4,14 +4,17 @@ import clsx from "clsx";
 import { useState } from "react";
 
 const navItems = {
-  "#": {
+  "#home": {
     name: "Inicio",
+  },
+  "#comisiones": {
+    name: "Comisiones",
   },
   "#portfolio": {
     name: "Portafolio",
   },
-  "#comisiones": {
-    name: "Comisiones",
+  "#streams": {
+    name: "Streams",
   },
   "#contact": {
     name: "Contacto",
@@ -31,7 +34,8 @@ export function MorphicNavbar() {
   return (
     <nav className="flex items-center justify-center max-w-4xl px-4 py-2">
       <div className="flex items-center justify-center">
-        <div className="glass flex items-center justify-between overflow-hidden rounded-xl">
+        {/* Cambio principal: flex-col en móvil, sm:flex-row en desktop */}
+        <div className="glass flex flex-col sm:flex-row items-center justify-between overflow-hidden rounded-xl">
           {Object.entries(navItems).map(([path, { name }], index, array) => {
             const isActive = isActiveLink(path);
             const isFirst = index === 0;
@@ -43,14 +47,15 @@ export function MorphicNavbar() {
             return (
               <a
                 className={clsx(
-                  "flex items-center justify-center bg-black p-1.5 px-4 text-sm text-white transition-all duration-300 dark:bg-white dark:text-black",
+                  "flex items-center justify-center bg-black p-1.5 px-1 sm:px-4 text-sm text-white transition-all duration-300 dark:bg-white dark:text-black",
                   isActive
-                    ? "mx-2 rounded-xl font-semibold text-sm"
+                    ? "mx-0 sm:mx-2 my-2 sm:my-0 rounded-xl font-semibold"
                     : clsx(
+                        // Bordes para móvil (vertical)
                         (isActiveLink(prevPath || "") || isFirst) &&
-                          "rounded-l-xl",
+                          "rounded-t-xl sm:rounded-t-none sm:rounded-l-xl",
                         (isActiveLink(nextPath || "") || isLast) &&
-                          "rounded-r-xl"
+                          "rounded-b-xl sm:rounded-b-none sm:rounded-r-xl"
                       )
                 )}
                 href={path}

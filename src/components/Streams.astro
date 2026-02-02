@@ -1,0 +1,143 @@
+---
+import "../styles/global.css"
+const stats = [
+    {
+      value: '50K+',
+      label: 'Seguidores',
+      emoji: '💖',
+      color: 'bg-gradient-to-br from-pink-200 to-pink-300',
+      borderColor: 'border-pink-300',
+    },
+    {
+      value: '2000+',
+      label: 'Horas en Vivo',
+      emoji: '⏰',
+      color: 'bg-gradient-to-br from-purple-200 to-purple-300',
+      borderColor: 'border-purple-300',
+    },
+    {
+      value: '15',
+      label: 'Torneos',
+      emoji: '🏆',
+      color: 'bg-gradient-to-br from-blue-200 to-blue-300',
+      borderColor: 'border-blue-300',
+    },
+    {
+      value: '95%',
+      label: 'Felicidad',
+      emoji: '✨',
+      color: 'bg-gradient-to-br from-yellow-200 to-yellow-300',
+      borderColor: 'border-yellow-300',
+    },
+  ];
+
+  const games = [
+    { name: 'The Finals', hours: '500+', emoji: '🔫', color: 'bg-pink-300' },
+    { name: 'Gardic Phone', hours: '450+', emoji: '⚔️', color: 'bg-purple-300' },
+    { name: 'Arte', hours: '400+', emoji: '🏠', color: 'bg-blue-300' },
+    { name: 'Just Talking', hours: '350+', emoji: '⚡', color: 'bg-yellow-300' },
+    { name: 'Cocina', hours: '200+', emoji: '🌸', color: 'bg-pink-300' },
+  ];
+
+  const schedule = [
+    { day: 'Lunes', time: '18:00 - 22:00', activity: 'Gaming & Arte', emoji: '🎮' },
+    { day: 'Martes', time: '18:00 - 22:00', activity: 'Maratón Gaming', emoji: '✨' },
+    { day: 'Miercoles', time: '16:00 - 19:00', activity: 'Arte en Vivo', emoji: '🎨' },
+    { day: 'Jueves', time: '16:00 - 19:00', activity: 'Arte en Vivo', emoji: '🎨' },
+    { day: 'Viernes', time: '16:00 - 19:00', activity: 'Arte en Vivo', emoji: '🎨' }
+  ];
+---
+
+    <section id="streaming" class="w-full mx-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border-2 border-purple-200 rounded-full mb-6 shadow-lg">
+            
+            <span class="text-purple-600 text-sm font-medium">En Vivo en Twitch</span>
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-bold text-gray-700 mb-4">
+            Mis <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Streams</span> 🎮
+          </h2>
+          <p class="text-gray-600 text-lg mx-auto">
+            ¡Únete a mi comunidad mágica y disfruta de gaming, arte en vivo y mucha diversión! ✨
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12">
+          {/* Schedule */}
+          <div class="p-8 rounded-3xl bg-white/80 backdrop-blur-sm border-4 border-purple-200 shadow-xl">
+            <h3 class="text-2xl font-bold text-gray-700 mb-6 flex items-center gap-3">
+              Horario de Streams ⏰
+            </h3>
+            <div class="space-y-4">
+              {schedule.map((item, index) => (
+                <div
+                  key={index}
+                  class="p-4 rounded-2xl bg-gradient-to-br from-pink-50 to-purple-50 border-2 border-pink-200 hover:border-purple-300 transition-colors"
+                >
+                  <div class="flex justify-between items-start mb-2">
+                    <div class="font-bold text-gray-700 flex items-center gap-2">
+                      <span>{item.emoji}</span>
+                      {item.day}
+                    </div>
+                    <div class="text-purple-600 text-sm font-medium">{item.time}</div>
+                  </div>
+                  <div class="text-gray-600 text-sm">{item.activity}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Top Games */}
+          <div class="p-8 rounded-3xl bg-white/80 backdrop-blur-sm border-4 border-pink-200 shadow-xl">
+            <h3 class="text-2xl font-bold text-gray-700 mb-6 flex items-center gap-3">
+              
+              Temáticas Favoritas 🎮
+            </h3>
+            <div class="space-y-4 mb-6">
+              {games.map((game, index) => (
+                <div key={index} class="space-y-2">
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-700 font-medium flex items-center gap-2">
+                      <span>{game.emoji}</span>
+                      {game.name}
+                    </span>
+                    <span class="text-gray-600 text-sm">{game.hours} hrs</span>
+                  </div>
+                  <div class="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      class={`h-full ${game.color} rounded-full transition-all duration-500`}
+                      style={{ width: `${(parseInt(game.hours) / 500) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div class="space-y-3 pt-6 border-t-2 border-pink-200">
+              <h4 class="text-gray-700 font-bold mb-3 flex items-center gap-2">
+                
+                Beneficios de la Comunidad
+              </h4>
+              <div class="flex items-center gap-3 text-sm text-gray-600">
+                <div class="w-2 h-2 rounded-full bg-pink-400"></div>
+                💖 Emotes exclusivos adorables
+                <!--  <img src="../assets/images/emotes/blueve-1.png" alt=""> -->
+                <!--  <img src="../assets/images/emotes/blueve-1.png" alt=""> -->
+                <!--  <img src="../assets/images/emotes/blueve-1.png" alt=""> -->
+                <!--  <img src="../assets/images/emotes/blueve-1.png" alt=""> -->
+              </div>
+              <div class="flex items-center gap-3 text-sm text-gray-600">
+                <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                🎨 Sorteos mensuales de arte
+              </div>
+              <div class="flex items-center gap-3 text-sm text-gray-600">
+                <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                🌟 Sesiones Q&A especiales
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

@@ -14,11 +14,15 @@ const linksNav = [
 ];
 ---
 <header class="flex items-center justify-between px-10 py-3 md:py-1 shadow max-w-7xl rounded-full mx-auto w-full bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-transparent bg-[length:300%_auto] animate-gradient-shift z-50">
-    <MorphicNavbar client:only="react" />
+    <div class="flex items-center justify-center">
+        <MorphicNavbar client:only="react" />
+    </div>
     <a href="/">
         <Image src={logo} alt="Logo" class="w-[100%] h-25 sm:hidden md:block lg:block xl:block 2xl:block 3xl:block" />
     </a>
-    <SocialLinks />
+    <div class="flex items-center justify-center">
+        <SocialLinks />
+    </div>
 </header>
 
 <script>
