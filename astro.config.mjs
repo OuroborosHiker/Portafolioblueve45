@@ -9,10 +9,11 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
   site: "https://tudominio.com", // Cambia por tu URL real
   integrations: [react(), svelte(), vue(), mdx(), sitemap()],
   adapter: node({
-    mode: "static",
+    mode: "standalone",
   }),
   vite: {
     plugins: [tailwindcss()],

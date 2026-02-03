@@ -1,3 +1,59 @@
+---
+let errors = { nombre: '', apellido: '', email: '', telefono: '', message: '', general: '' };
+let values = { nombre: '', apellido: '', email: '', telefono: '', message: '', pais: 'CO' };
+let formEnviado = false;
+
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+        
+        // Resetear errores antes de validar
+        errors = { nombre: '', apellido: '', email: '', telefono: '', message: '', general: '' };
+        
+        // Obtener valores
+        const nombre = String(data.get("nombre") || "");
+        const apellido = String(data.get("apellido") || "");
+        const email = String(data.get("email") || "");
+        const telefono = String(data.get("telefono") || "");
+        const message = String(data.get("message") || "");
+        const pais = String(data.get("pais") || "CO");
+        
+        // Guardar valores para persistirlos en el formulario
+        values = { nombre, apellido, email, telefono, message, pais };
+        
+        // Validaciones específicas por campo
+        if (!nombre || nombre.length < 3) {
+            errors.nombre = "El nombre debe tener al menos 3 caracteres";
+        }
+        if (!apellido || apellido.length < 3) {
+            errors.apellido = "El apellido debe tener al menos 3 caracteres";
+        }
+        if (!email || !email.includes("@") || !email.includes(".")) {
+            errors.email = "Ingresa un email válido";
+        }
+        if (!telefono || telefono.length < 7) {
+            errors.telefono = "Ingresa un número de teléfono válido";
+        }
+        if (!message || message.length < 10) {
+            errors.message = "El mensaje debe tener al menos 10 caracteres";
+        }
+        
+        const hasErrors = Object.values(errors).some(msg => msg !== '');
+        
+        if (!hasErrors) {
+            // Aquí envías el email o guardas en DB
+            formEnviado = true;
+            // Resetear valores después de enviar
+            values = { nombre: '', apellido: '', email: '', telefono: '', message: '', pais: 'CO' };
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            errors.general = "Ocurrió un error al procesar el formulario";
+            console.log(error.message);
+        }
+    }
+}
+---
 <section class="flex items-center justify-center py-12 px-4 w-full">
     <div class="grid md:grid-cols-2 md:gap-10 lg:gap-20 max-w-7xl w-full items-center">
         <div class="p-5">
@@ -8,56 +64,105 @@
                 ¿Tienes alguna pregunta o idea? Estaré encantada de ayudarte.
             </p>
 
-            <form class="space-y-5">
+            {formEnviado && (
+                <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl">
+                    ¡Mensaje enviado correctamente! Te contactaré pronto.
+                </div>
+            )}
+            
+            {errors.general && (
+                <div class="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-xl">
+                    {errors.general}
+                </div>
+            )}
+
+            <form class="space-y-5" method="post" novalidate>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
-                        <input type="text" placeholder="David" 
-                            class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-pink-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg" />
+                        <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
+                        <input 
+                            type="text" 
+                            id="nombre"
+                            placeholder="Nombre completo" 
+                            name="nombre"
+                            value={values.nombre}
+                            class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-pink-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"
+                            required 
+                            minlength="3"
+                        />
+                        {errors.nombre && <p class="text-red-500 text-sm mt-1">{errors.nombre}</p>}
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Apellido</label>
-                        <input type="text" placeholder="Andrew" 
-                            class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-purple-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg" />  
+                        <label for="apellido" class="block text-sm font-medium text-gray-700 mb-2">Apellido</label>
+                        <input 
+                            type="text" 
+                            id="apellido"
+                            placeholder="Apellido completo" 
+                            name="apellido"
+                            value={values.apellido}
+                            class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-purple-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"
+                            required 
+                            minlength="3" 
+                        />
+                        {errors.apellido && <p class="text-red-500 text-sm mt-1">{errors.apellido}</p>}
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico</label>
-                    <input type="email" placeholder="david@company.com" 
-                        class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-blue-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"/>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico</label>
+                    <input 
+                        type="email" 
+                        id="email"
+                        placeholder="ejemplo@company.com" 
+                        name="email"
+                        value={values.email}
+                        class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-blue-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"
+                        required 
+                    />
+                    {errors.email && <p class="text-red-500 text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Número de teléfono</label>
+                    <label for="telefono" class="block text-sm font-medium text-gray-700 mb-2">Número de teléfono</label>
                     <div class="flex bg-white/60 backdrop-blur-sm border-2 border-pink-200 rounded-2xl overflow-hidden focus-within:border-purple-400 focus-within:bg-white/80 transition-all shadow-lg">
-                        <select class="px-4 py-3 text-sm outline-none cursor-pointer text-gray-700 bg-transparent border-r-2 border-pink-200 font-medium">
-                            <option>US</option>
-                            <option>UK</option>
-                            <option>IN</option>
-                            <option>CO</option>
+                        <select 
+                            name="pais"
+                            class="px-4 py-3 text-sm outline-none cursor-pointer text-gray-700 bg-transparent border-r-2 border-pink-200 font-medium"
+                        >
+                            <option value="US" selected={values.pais === "US"}>US</option>
+                            <option value="UK" selected={values.pais === "UK"}>UK</option>
+                            <option value="IN" selected={values.pais === "IN"}>IN</option>
+                            <option value="CO" selected={values.pais === "CO"}>CO</option>
                         </select>
-                        <input type="tel" placeholder="+1 342 123-456" 
-                            class="flex-1 px-4 py-3 text-sm outline-none bg-transparent text-gray-700 placeholder-gray-400" />
+                        <input 
+                            type="tel" 
+                            id="telefono"
+                            placeholder="322 1234562" 
+                            name="telefono"
+                            value={values.telefono}
+                            class="flex-1 px-4 py-3 text-sm outline-none bg-transparent text-gray-700 placeholder-gray-400"
+                            required 
+                            minlength="7"
+                        />
                     </div>
+                    {errors.telefono && <p class="text-red-500 text-sm mt-1">{errors.telefono}</p>}
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
-                    <textarea rows="4" 
-                        class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-purple-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none resize-y focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"></textarea>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                    <textarea 
+                        id="message"
+                        rows="4" 
+                        name="message"
+                        class="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border-2 border-purple-200 rounded-2xl text-gray-700 placeholder-gray-400 outline-none resize-y focus:border-purple-400 focus:bg-white/80 transition-all shadow-lg"
+                    >{values.message}</textarea>
+                    {errors.message && <p class="text-red-500 text-sm mt-1">{errors.message}</p>}
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" 
-                        class="w-5 h-5 cursor-pointer accent-pink-500 rounded-lg border-2 border-pink-200" />
-                    <label class="text-sm text-gray-600 cursor-pointer">
-                        You agree to our <span class="text-purple-600 underline decoration-pink-400">terms</span> and <span class="text-purple-600 underline decoration-pink-400">privacy policy</span>.
-                    </label>
-                </div>
-
-                <button type="submit" 
-                    class="w-full py-4 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-[length:200%_auto] hover:bg-[position:100%_center] text-white font-bold rounded-2xl text-base cursor-pointer transition-all duration-500 shadow-lg hover:shadow-purple-300/50 hover:-translate-y-0.5">
+                <button 
+                    type="submit" 
+                    class="w-full py-4 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-[length:200%_auto] hover:bg-[position:100%_center] text-white font-bold rounded-2xl text-base cursor-pointer transition-all duration-500 shadow-lg hover:shadow-purple-300/50 hover:-translate-y-0.5"
+                >
                     Enviar mensaje ✨
                 </button>
             </form>
