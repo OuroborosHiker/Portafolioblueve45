@@ -1114,6 +1114,9 @@ module.exports = {
           },
         },
       },
+      fontFamily: {
+        cinnamon: ['"Cinnamon Coffe Cake"', "sans-serif"], // ← Nota las comillas dobles dentro
+      },
       animation: {
         fadein: "fade-in 1s ease-in-out 0.25s 1",
         fadeout: "fade-out 1s ease-out 0.25s 1",

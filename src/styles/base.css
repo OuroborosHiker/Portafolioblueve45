@@ -1,35 +1,40 @@
+@import url('https://fonts.cdnfonts.com/css/cinnamon-coffe-cake');
 @import "tailwindcss";
+@import 'tailwind-animations';
+@font-face {
+  font-family: 'Cinnamon Coffe Cake';
+  font-display: swap;
+  src: url('https://fonts.cdnfonts.com/s/84839/CinnamonCoffeCake-Ea2Pr.woff') format('woff2');
+}
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
 
-    .tab-content {
-        display: none;
-        animation: fadeIn 0.3s ease-in;
-    }
-    
-    .tab-content.active {
-        display: block;
-    }
-    
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .tab-button {
-        position: relative;
-        border-bottom: 3px solid transparent;
-    }
-    
-    .tab-button.active {
-        border-bottom-color: #8b5cf6;
-    }
+.tab-content.active {
+    display: block;
+}
 
-    /* Mejorar el scrolling suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-button {
+    position: relative;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button.active {
+    border-bottom-color: #8b5cf6;
+}
+/* Mejorar el scrolling suave */
 html {
     scroll-behavior: smooth;
 }

@@ -35,7 +35,7 @@ export function MorphicNavbar() {
     <nav className="flex items-center justify-center max-w-4xl px-4 py-2">
       <div className="flex items-center justify-center">
         {/* Cambio principal: flex-col en móvil, sm:flex-row en desktop */}
-        <div className="glass flex flex-col sm:flex-row items-center justify-between overflow-hidden rounded-xl">
+        <div className="glass flex flex-row items-center justify-between overflow-hidden rounded-xl">
           {Object.entries(navItems).map(([path, { name }], index, array) => {
             const isActive = isActiveLink(path);
             const isFirst = index === 0;
